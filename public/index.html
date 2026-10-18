@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Конференции.РФ - бронирование помещений</title>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/app.js"></script>
+</head>
+<body>
+<header class="header"><div class="wrap nav"><strong>Конференции.РФ</strong><nav id="nav" aria-label="Навигация"></nav></div></header>
+<main class="wrap">
+  <div id="notice" class="notice hidden" role="status" aria-live="polite"></div>
+  <section id="login-view" class="view card narrow">
+    <h1>Вход в систему</h1>
+    <form id="login-form"><label>Логин<input name="login" required autocomplete="username"></label><label>Пароль<input type="password" name="password" required autocomplete="current-password"></label><button>Войти</button></form>
+    <p><a href="#register">Еще не зарегистрированы? Регистрация</a></p>
+  </section>
+  <section id="register-view" class="view card narrow hidden">
+    <h1>Регистрация</h1>
+    <form id="register-form">
+      <label>Логин (латиница и цифры, от 6 символов)<input name="login" required pattern="[A-Za-z0-9]{6,}" minlength="6" maxlength="80" autocomplete="username"></label>
+      <label>Пароль (от 8 символов)<input name="password" type="password" required minlength="8" autocomplete="new-password"></label>
+      <label>ФИО (кириллица и пробелы)<input name="fullName" required placeholder="Иванов Иван Иванович" required pattern="[А-Яа-яЁё ]+" maxlength="200" autocomplete="name"></label>
+      <label>Телефон - 8(XXX)XXX-XX-XX<input name="phone" required placeholder="8(999)123-45-67" pattern="8\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2}" autocomplete="tel"></label>
+      <label>Электронная почта<input name="email" type="email" required placeholder="example@domain.com" required maxlength="254" autocomplete="email"></label>
+      <button>Создать пользователя</button>
+    </form>
+    <p><a href="#login">Уже зарегистрированы? Авторизация</a></p>
+  </section>
+  <section id="rooms-view" class="view hidden">
+    <h1>Помещения</h1>
+    <div class="card"><label>Поиск по названию<input id="room-search" type="search" placeholder="Например, Аудитория"></label><div id="rooms-list" class="room-grid"></div></div>
+  </section>
+  <section id="create-view" class="view card hidden">
+    <h1>Новая заявка</h1>
+    <form id="create-form">
+      <label>Название помещения<input id="room-name" name="roomName" required list="room-options" placeholder="Введите точное название помещения"><datalist id="room-options"></datalist></label>
+      <label>Дата и время начала конференции<input name="startsAt" required placeholder="ДД.ММ.ГГГГ ЧЧ:ММ" pattern="[0-9]{2}\.[0-9]{2}\.[0-9]{4} [0-9]{2}:[0-9]{2}"></label>
+      <fieldset><legend>Способ оплаты</legend><label class="option"><input type="radio" name="paymentMethod" value="in_person" required> При очном посещении</label><label class="option"><input type="radio" name="paymentMethod" value="sbp"> Переводом по системе СБП</label></fieldset>
+      <button>Отправить</button>
+    </form>
+  </section>
+  <section id="bookings-view" class="view hidden"><h1>Мои заявки</h1><div id="my-bookings"></div></section>
+  <section id="admin-view" class="view hidden"><h1>Панель администратора</h1><div id="stats" class="stats"></div><div class="card"><h2>Все заявки</h2><div class="scroll"><table><thead><tr><th>№</th><th>Пользователь</th><th>ФИО</th><th>Помещение</th><th>Начало</th><th>Оплата</th><th>Статус</th><th>Действие</th></tr></thead><tbody id="admin-bookings"></tbody></table></div></div></section>
+</main>
+</body>
+</html>
